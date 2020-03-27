@@ -1,3 +1,7 @@
 domain: programming-kubernetes.info
 repo: cnat
+resources:
+- group: cnat
+  kind: At
+  version: v1alpha1
 version: "2"
