@@ -5,5 +5,5 @@ metadata:
     controller-tools.k8s.io: "1.0"
   name: example-at
 spec:
-  schedule: "2019-04-12T10:12:00Z"
+  schedule: "2020-03-27T15:38:50Z"
   command: "echo YAY"

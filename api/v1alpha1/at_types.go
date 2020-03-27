@@ -26,7 +26,7 @@ import (
 const (
 	PhasePending = "PENDING"
 	PhaseRunning = "RUNNING"
-	PhaseDone = "DONE"
+	PhaseDone    = "DONE"
 )
 
 // AtSpec defines the desired state of At
@@ -38,7 +38,6 @@ type AtSpec struct {
 
 	Command string `json:"command,omitempty"`
 }
-
 
 // AtStatus defines the observed state of At
 type AtStatus struct {

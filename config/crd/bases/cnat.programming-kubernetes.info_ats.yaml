@@ -4,7 +4,7 @@ apiVersion: apiextensions.k8s.io/v1beta1
 kind: CustomResourceDefinition
 metadata:
   annotations:
-    controller-gen.kubebuilder.io/version: v0.2.5
+    controller-gen.kubebuilder.io/version: v0.2.4
   creationTimestamp: null
   name: ats.cnat.programming-kubernetes.info
 spec:
@@ -15,6 +15,8 @@ spec:
     plural: ats
     singular: at
   scope: Namespaced
+  subresources:
+    status: {}
   validation:
     openAPIV3Schema:
       description: At is the Schema for the ats API
@@ -34,12 +36,18 @@ spec:
         spec:
           description: AtSpec defines the desired state of At
           properties:
-            foo:
-              description: Foo is an example field of At. Edit At_types.go to remove/update
+            command:
+              type: string
+            schedule:
               type: string
           type: object
         status:
           description: AtStatus defines the observed state of At
+          properties:
+            phase:
+              description: INSERT ADDITIONAL STATUS FIELD - define observed state
+                of cluster
+              type: string
           type: object
       type: object
   version: v1alpha1
