@@ -23,24 +23,36 @@ import (
 // EDIT THIS FILE!  THIS IS SCAFFOLDING FOR YOU TO OWN!
 // NOTE: json tags are required.  Any new fields you add must have json tags for the fields to be serialized.
 
+const (
+	PhasePending = "PENDING"
+	PhaseRunning = "RUNNING"
+	PhaseDone = "DONE"
+)
+
 // AtSpec defines the desired state of At
 type AtSpec struct {
 	// INSERT ADDITIONAL SPEC FIELDS - desired state of cluster
 	// Important: Run "make" to regenerate code after modifying this file
 
-	// Foo is an example field of At. Edit At_types.go to remove/update
-	Foo string `json:"foo,omitempty"`
+	Schedule string `json:"schedule,omitempty"`
+
+	Command string `json:"command,omitempty"`
 }
+
 
 // AtStatus defines the observed state of At
 type AtStatus struct {
 	// INSERT ADDITIONAL STATUS FIELD - define observed state of cluster
+	Phase string `json:"phase,omitempty"`
 	// Important: Run "make" to regenerate code after modifying this file
 }
 
-// +kubebuilder:object:root=true
+// +genclient
+// +k8s:deepcopy-gen:interfaces=k8s.io/apimachinery/pkg/runtime.Object
 
 // At is the Schema for the ats API
+// +k8s:openapi-gen=true
+// +kubebuilder:subresource:status
 type At struct {
 	metav1.TypeMeta   `json:",inline"`
 	metav1.ObjectMeta `json:"metadata,omitempty"`
@@ -49,7 +61,7 @@ type At struct {
 	Status AtStatus `json:"status,omitempty"`
 }
 
-// +kubebuilder:object:root=true
+// +k8s:deepcopy-gen:interfaces=k8s.io/apimachinery/pkg/runtime.Object
 
 // AtList contains a list of At
 type AtList struct {
